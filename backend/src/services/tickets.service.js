@@ -25,12 +25,13 @@ class TicketsService {
     async generateTicket(cid, email) {
         const dbCart = await cartsService.getOne(cid)
         const sobrante = [] //no se que hacer con los productos sin stock, ya hice mucho quilombo xd
-
+        // no me carga el sobrante, me devuelve un array vacio asi tal cual jaja
         const productsSucess = await dbCart.products.filter(async (obj) => {
             const dbProduct = await productsModel.findById(obj.product)
             if (dbProduct.stock >= obj.quantity) {
                 dbProduct.stock -= obj.quantity
                 dbProduct.save()
+                await cartsService.deleteAllProducts(cid)
                 return dbProduct.stock >= obj.quantity
             }
             else{
