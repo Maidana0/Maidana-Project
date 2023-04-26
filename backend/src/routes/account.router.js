@@ -36,7 +36,7 @@ export default class UsersCustomeRouter extends Router {
         this.get('/logout', async (req, res) => {
             try {
                 req.session.destroy((error) => error ? console.log(error)
-                    : res.redirect('http://localhost:3000/login'))
+                    : res.redirect('http://localhost:3000/session/ingresar'))
             } catch (error) { console.log(error) }
         })
 

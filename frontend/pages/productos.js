@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import Auth from "@FMaidana07/components/auth";
 import Link from "next/link";
-import AddToCart from "@FMaidana07/components/addToCart";
+import AddToCart from "@FMaidana07/components/buttons/addToCart";
 import { Loading, Error } from "@FMaidana07/components/utils";
 
 import { LogContext } from "@FMaidana07/components/context";

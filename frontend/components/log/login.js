@@ -3,7 +3,7 @@ import { LogContext } from "@FMaidana07/components/context"
 import Link from "next/link"
 import { Loading } from "@FMaidana07/components/utils"
 
-const login = () => {
+const Login = () => {
     const { account, login } = useContext(LogContext)
     const [isLoading, setLoading] = useState(false)
     const [dataError, setDataError] = useState(false)
@@ -89,7 +89,7 @@ const login = () => {
                         Iniciar sesion con Github
                     </Link>
                     <br />
-                    <Link href={'/session/register'}>
+                    <Link href={'/session/registro'}>
                         Registrarme
                     </Link>
                 </>
@@ -100,4 +100,4 @@ const login = () => {
     )
 }
 
-export default login
+export default Login

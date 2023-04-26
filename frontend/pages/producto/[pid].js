@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react"
 import { LogContext } from "@FMaidana07/components/context"
-import AddToCart from "@FMaidana07/components/addToCart"
+import AddToCart from "@FMaidana07/components/buttons/addToCart"
 import { Loading, Error } from "@FMaidana07/components/utils"
 
 const category = () => {

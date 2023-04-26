@@ -1,4 +1,4 @@
-import { Toastify } from "./toast"
+import { Toastify } from "../toast.js"
 
 const AddToCart = ({ cid, pid }) => {
 
@@ -11,10 +11,6 @@ const AddToCart = ({ cid, pid }) => {
       .then(data => {
         console.log(data)
         Toastify(data.message)
-        // DATA=  {
-        //     message: 'Producto agregado!',
-        //     cart
-        // }
       })
       .catch(e => console.log(e))
   }

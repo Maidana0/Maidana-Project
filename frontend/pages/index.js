@@ -8,9 +8,7 @@ export default function Home() {
     <>
       <Head>
         <title>Maidana Project</title>
-        <meta name="description" content="Proyecto para practicar nociones desde el backend" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       HOLA
       <br/>

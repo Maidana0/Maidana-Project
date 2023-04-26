@@ -52,8 +52,8 @@ const Navbar = ({ router, logged, admin }) => {
                     }
                     <li className={styles.items_links}>
                         <Link
-                            className={router.pathname == '/login' ? styles.focus : ''}
-                            href={logged ? 'http://localhost:8080/account/logout' : '/login'}>
+                            className={router.pathname == 'session/ingresar' ? styles.focus : ''}
+                            href={logged ? 'http://localhost:8080/account/logout' : '/session/ingresar'}>
                             {logged ? 'Cerrar Sesion' : 'Iniciar Sesion'}
                         </Link>
                     </li>

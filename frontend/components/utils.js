@@ -23,3 +23,9 @@ export const Error = ({ message, error }) => (
     }
   </div>
 )
+
+export const ars = new Intl.NumberFormat('es-AR', {
+  style: 'currency',
+  currency: 'ARS',
+  minimumFractionDigits: 0
+});

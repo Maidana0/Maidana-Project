@@ -1,6 +1,6 @@
-import { use, useState } from "react"
+import { useState } from "react"
 
-const register = () => {
+const Register = () => {
   const [state, setState] = useState(false)
   const [typePass, setTypePass] = useState(false)
   const [user, setUser] = useState({
@@ -30,8 +30,8 @@ const register = () => {
       .catch(e => console.log(e))
   }
 
-  if(state == 'sucess') return(<h1>Registrado con Exito</h1>)
-  if(state == 'error') return (<h1>Ocurrio un Error</h1>)
+  if (state == 'sucess') return (<h1>Registrado con Exito</h1>)
+  if (state == 'error') return (<h1>Ocurrio un Error</h1>)
   return (
     <>
       <h1>Registrate</h1>
@@ -56,4 +56,4 @@ const register = () => {
   )
 }
 
-export default register
+export default Register
