@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import Head from "next/head";
 import Auth from "@FMaidana07/components/auth";
 import Link from "next/link";
 import AddToCart from "@FMaidana07/components/buttons/addToCart";
@@ -31,7 +32,7 @@ const products = () => {
       .catch(e => {
         console.log(e)
         setLoading(false)
-        setProducts(false)
+        setProducts({ error: true })
       })
   }, [filter])
 
@@ -46,52 +47,52 @@ const products = () => {
     setFilter({ ...filter, page: filter.page - 1 })
   }
 
-  if (isLoading) return <Loading />
-  if (!dataProducts || dataProducts.error) return <Error />
+  // if (!dataProducts || isLoading) return <Loading />
+  if (dataProducts.error) return <Error />
 
   return (
     <>
+      <Head>
+        <title>Productos - [Maidana-Project]</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
+
       <h1>{dataProducts.message}</h1>
+      <> {
+        (!dataProducts || isLoading) ? <Loading /> :
+          dataProducts.products.payload.map((product) => (
+            <div key={product.id}>
+              <h4>{product.title}</h4>
+              <p>Categoria: {product.category}</p>
+              <hr />
+              <p>Precio: {product.price}</p>
+              <p>Stock: {product.stock}</p>
 
-      {
-        dataProducts.products.payload.map((product) => (
-          <div key={product.id}>
-            <h4>{product.title}</h4>
-            <p>Categoria: {product.category}</p>
-            <hr />
-            <p>Precio: {product.price}</p>
-            <p>Stock: {product.stock}</p>
+              <div>
+                <Link href={`/producto/${product.id}`}>
+                  Mostrar Detalles
+                </Link>
 
-            <div>
-              <Link
-                href={`/producto/${product.id}`}>
-                Mostrar Detalles
-              </Link>
-
-              <AddToCart
-                pid={product.id}
-              cid={account.cart}
-              />
+                <AddToCart
+                  pid={product.id}
+                  cid={account.cart}
+                />
+              </div>
+              <br />
             </div>
-            <br />
-          </div>
-        ))
+          ))
       }
-      <div>
-        {
-          dataProducts.products.hasPrevPage &&
-          <button onClick={handlePrev}>
-            Anterior
-          </button>
-        }
 
-        {
-          dataProducts.products.hasNextPage &&
-          <button onClick={handleNext}>
-            Siguiente
-          </button>
-        }
-      </div>
+        {dataProducts.products &&
+          <div>
+            {dataProducts.products.hasPrevPage ?
+              <button onClick={handlePrev}>Anterior</button> : ''
+            }
+            {dataProducts.products.hasNextPage &&
+              <button onClick={handleNext}> Siguiente</button>
+            }
+          </div>}
+      </>
     </>
   )
 

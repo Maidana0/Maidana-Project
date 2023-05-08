@@ -1,6 +1,6 @@
-import {DBConnect} from "./persistence/mongoDB/dbConfig.js"
+import { DBConnect } from "./persistence/mongoDB/dbConfig.js"
 
- const mongoDB = DBConnect.getInstance()
+const mongoDB = DBConnect.getInstance()
 import cors from 'cors'
 import express from 'express';
 import handlebars from 'express-handlebars';
@@ -13,7 +13,10 @@ import AccountRouter from './routes/account.router.js';
 import ProductsRouter from './routes/products.router.js';
 import CartsRouter from './routes/cart.router.js'
 // import ViewsRouter from './routes/views.router.js'
-
+//
+import MockRouter from "./utils/mocks.js";
+import { errorMiddleware } from "./utils/error/error.midleware.js";
+//
 
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
@@ -30,7 +33,11 @@ const app = express()
 const accountRouter = new AccountRouter()
 const productsRouter = new ProductsRouter()
 const cartsRouter = new CartsRouter()
-// const viewsRouter = new ViewsRouter()
+//
+const MockProducts = new MockRouter()
+app.use(errorMiddleware)
+//
+
 
 app.engine('handlebars', handlebars.engine())
 app.set('view engine', 'handlebars')
@@ -59,7 +66,7 @@ app.use('/account', accountRouter.getRouter())
 app.use('/api/products', productsRouter.getRouter())
 app.use('/api/carts', cartsRouter.getRouter())
 // app.use('/views', viewsRouter.getRouter())
-
+app.use('/mockingproducts', MockProducts.getRouter())
 
 
 app.listen(PORT, () => console.log(`Server on Port: ${PORT}`))

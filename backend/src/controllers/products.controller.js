@@ -1,5 +1,11 @@
 import productsService from '../services/products.service.js'
 
+import CustomError from '../utils/error/CustomError.js'
+
+import { ErrorsCause, ErrorsMessage, ErrorsName } from '../utils/error/errors.js'
+
+
+
 class ProductsController {
     getProducts = async (req, res) => {
         try {
@@ -10,9 +16,10 @@ class ProductsController {
                 products
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.GET_PRODUCTS_ERROR, 
+                message: ErrorsMessage.GET_PRODUCTS_ERROR, 
+                cause: ErrorsCause.GET_PRODUCTS_ERROR
             })
         }
     }
@@ -23,9 +30,10 @@ class ProductsController {
             const product = await productsService.getOne(pid)
             res.json(product)
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.GET_PRODUCT_ID_ERROR, 
+                message: ErrorsMessage.GET_PRODUCT_ID_ERROR, 
+                cause: ErrorsCause.GET_PRODUCT_ID_ERROR
             })
         }
     }
@@ -39,9 +47,10 @@ class ProductsController {
                 addedProduct
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.ADD_PRODUCT_ERROR, 
+                message: ErrorsMessage.ADD_PRODUCT_ERROR, 
+                cause: ErrorsCause.ADD_PRODUCT_ERROR
             })
         }
     }
@@ -56,9 +65,10 @@ class ProductsController {
                 updateProduct
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.UPDATE_PRODUCT_ERROR, 
+                message: ErrorsMessage.UPDATE_PRODUCT_ERROR, 
+                cause: ErrorsCause.UPDATE_PRODUCT_ERROR
             })
         }
     }
@@ -72,9 +82,10 @@ class ProductsController {
                 productDeleted
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.DELETE_PRODUCT_ERROR, 
+                message: ErrorsMessage.DELETE_PRODUCT_ERROR, 
+                cause: ErrorsCause.DELETE_PRODUCT_ERROR
             })
         }
     }

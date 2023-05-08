@@ -1,4 +1,6 @@
 import ticketsService from "../services/tickets.service.js";
+import CustomError from '../utils/error/CustomError.js'
+import { ErrorsCause, ErrorsMessage, ErrorsName } from '../utils/error/errors.js'
 
 class TicketController {
 
@@ -24,9 +26,10 @@ class TicketController {
             const ticket = await ticketsService.generateTicket(cid, email)
             res.json(ticket)
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.PURCHASE_CART_ERROR, 
+                message: ErrorsMessage.PURCHASE_CART_ERROR, 
+                cause: ErrorsCause.PURCHASE_CART_ERROR
             })
         }
     }

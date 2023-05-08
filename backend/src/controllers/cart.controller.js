@@ -1,5 +1,10 @@
 import cartsService from "../services/carts.service.js"
 
+import CustomError from '../utils/error/CustomError.js'
+
+import { ErrorsCause, ErrorsMessage, ErrorsName } from '../utils/error/errors.js'
+
+
 class CartController {
     getAllCarts = async (req, res) => {
         try {
@@ -9,10 +14,12 @@ class CartController {
                 carts
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.GET_CARTS_ERROR,
+                message: ErrorsMessage.GET_CARTS_ERROR,
+                cause: ErrorsCause.GET_CARTS_ERROR
             })
+
         }
     }
     getOneCart = async (req, res) => {
@@ -24,9 +31,10 @@ class CartController {
                 cart
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.GET_CART_ID_ERROR,
+                message: ErrorsMessage.GET_CART_ID_ERROR,
+                cause: ErrorsCause.GET_CART_ID_ERROR
             })
         }
     }
@@ -38,9 +46,10 @@ class CartController {
                 newCart
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.ADD_CART_ERROR,
+                message: ErrorsMessage.ADD_CART_ERROR,
+                cause: ErrorsCause.ADD_CART_ERROR
             })
         }
     }
@@ -48,15 +57,16 @@ class CartController {
         try {
             const { cid, pid } = req.params
             const cart = await cartsService.addProduct(cid, pid)
-    
+
             res.json({
                 message: 'Producto agregado!',
                 cart
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.ADD_PROD_TO_CART_ERROR,
+                message: ErrorsMessage.ADD_PROD_TO_CART_ERROR,
+                cause: ErrorsCause.ADD_PROD_TO_CART_ERROR
             })
         }
     }
@@ -70,9 +80,10 @@ class CartController {
                 cart
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.UPDATE_PRODS_QUANTITY_ERROR, 
+                message: ErrorsMessage.UPDATE_PRODS_QUANTITY_ERROR, 
+                cause: ErrorsCause.UPDATE_PRODS_QUANTITY_ERROR
             })
         }
     }
@@ -101,9 +112,10 @@ class CartController {
                 cart
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.DEL_PROD_FROM_CART_ERROR, 
+                message: ErrorsMessage.DEL_PROD_FROM_CART_ERROR, 
+                cause: ErrorsCause.DEL_PROD_FROM_CART_ERROR
             })
         }
     }
@@ -116,9 +128,10 @@ class CartController {
                 cart
             })
         } catch (error) {
-            res.json({
-                message: "Error",
-                error
+            CustomError.createCustomError({
+                name: ErrorsName.EMPTY_CART_ERROR, 
+                message: ErrorsMessage.EMPTY_CART_ERROR, 
+                cause: ErrorsCause.EMPTY_CART_ERROR
             })
         }
     }

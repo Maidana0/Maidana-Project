@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
 
-import { Toastify
- } from '@FMaidana07/components/toast'
 export default function Home() {
   return (
     <>
@@ -12,12 +9,6 @@ export default function Home() {
       </Head>
       HOLA
       <br/>
-      <button
-      onClick={(e)=>{
-        e.preventDefault()
-        Toastify('HOLA MI REY')
-      }}
-      >Toast</button>
     </>
   )
 }

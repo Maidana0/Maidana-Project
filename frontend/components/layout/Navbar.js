@@ -65,9 +65,8 @@ const Navbar = ({ router, logged, admin }) => {
                     <Hamburger
                         color='#e878a2'
                         onToggle={toggled => {
-                            console.log('en proceso xd')
-                            // const nav = document.getElementById('nav')
-                            // toggled ? nav.classList.add(styles.nav_active) : nav.classList.remove(styles.nav_active)
+                            const nav = document.getElementById('nav')
+                            toggled ? nav.classList.add(styles.nav_active) : nav.classList.remove(styles.nav_active)
                         }} />
                 </div>
             </nav>
