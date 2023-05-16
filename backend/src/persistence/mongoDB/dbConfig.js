@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import config from "../../config.js"
+import logger from '../../utils/winston/winston.js'
 
 export class DBConnect {
     static #instance
@@ -13,7 +14,7 @@ export class DBConnect {
         if (this.#instance) return this.#instance
         else {
             this.#instance = new DBConnect()
-            console.log('Conectado con exito a la base de datos')
+            logger.info('Conectado con exito a la base de datos')
             return this.#instance
         }
     }

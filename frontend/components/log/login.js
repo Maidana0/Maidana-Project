@@ -3,7 +3,7 @@ import { LogContext } from "@FMaidana07/components/context"
 import Link from "next/link"
 import { Loading } from "@FMaidana07/components/utils"
 import Head from 'next/head'
-
+import { Error } from "@FMaidana07/components/utils"
 const Login = () => {
     const { account, login } = useContext(LogContext)
     const [isLoading, setLoading] = useState(false)
@@ -44,18 +44,17 @@ const Login = () => {
                     .catch(e => {
                         setLoading(false)
                         setErrorAuth(data.message)
-
                         console.log(e)
                     })
             })
             .catch((e) => {
                 setLoading(false)
-                setErrorAuth(true)
+                setDataError(true)
                 console.log(e)
             })
     }
 
-    if (isLoading) return <Loading />
+    // if (isLoading) return <Loading />
     if (dataError) return <Error />
     return (
         <>
@@ -64,43 +63,49 @@ const Login = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
             <div>
-                {account.logged ?
-                    <>
-                        <h1>Ha iniciado sesion con exito!</h1>
-                        <h3>Bienvenido {account.name}</h3>
-                    </>
-                    :
-                    <>
-                        <h3>Iniciar Session</h3>
-                        <form onSubmit={formSubmit}>
-                            <input value={user.email} onChange={handleInputChange}
-                                type="text" name="email" id="email" />
+                {
+                    isLoading ? <Loading />
+                        :
+                        <>
+                            {account.logged ?
+                                <>
+                                    <h1>Ha iniciado sesion con exito!</h1>
+                                    <h3>Bienvenido {account.name}</h3>
+                                </>
+                                :
+                                <>
+                                    <h3>Iniciar Session</h3>
+                                    <form onSubmit={formSubmit}>
+                                        <input value={user.email} onChange={handleInputChange}
+                                            type="text" name="email" id="email" />
 
-                            <input value={user.password} onChange={handleInputChange}
-                                type="password" name="password" id="password" />
-                            <input type="submit" value="Ingresar" />
-                        </form>
-                        <br />
-                        {errorAuth ? <span>{errorAuth}</span> : ''}
-                        <hr />
-                        {/* ME RENDI CON ESTO D:
+                                        <input value={user.password} onChange={handleInputChange}
+                                            type="password" name="password" id="password" />
+                                        <input type="submit" value="Ingresar" />
+                                    </form>
+                                    <br />
+                                    {errorAuth ? <span>{errorAuth}</span> : ''}
+                                    <hr />
+                                    {/* ME RENDI CON ESTO D:
                     NOSE QUE HACER CON ESTE LINK
                     PARA HACER UN LOGIN
                     Y TAMPOCO SE COMO MANTENER LA SESSION DEL USUARIO */}
-                        <Link href={'http://localhost:8080/account/login/google'}>
-                            Iniciar sesion con Google
-                        </Link>
-                        <br />
-                        <Link href={'http://localhost:8080/account/login/github'}>
-                            Iniciar sesion con Github
-                        </Link>
-                        <br />
-                        <Link href={'/session/registro'}>
-                            Registrarme
-                        </Link>
-                    </>
-
+                                    <Link href={'http://localhost:8080/account/login/google'}>
+                                        Iniciar sesion con Google
+                                    </Link>
+                                    <br />
+                                    <Link href={'http://localhost:8080/account/login/github'}>
+                                        Iniciar sesion con Github
+                                    </Link>
+                                    <br />
+                                    <Link href={'/session/registro'}>
+                                        Registrarme
+                                    </Link>
+                                </>
+                            }
+                        </>
                 }
+
 
             </div>
         </>

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import program from './utils/commander.js'
 
-const { port, database } = program.opts()
+const { port, database, mode } = program.opts()
 
 dotenv.config(
     {
@@ -13,6 +13,7 @@ dotenv.config(
 export default {
     database,
     port,
+    mode,
     mongo_uri: process.env.MONGO_URI,
     mongo_secret: process.env.MONGO_SECRET,
     passport_strategies: {
