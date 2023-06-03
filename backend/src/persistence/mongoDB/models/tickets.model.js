@@ -11,7 +11,7 @@ const ticketsSchema = new mongoose.Schema({
     purchase_datetime: {
         type: String,
         require: true,
-        default: time()
+        default: time().full_date
     },
     amount: {
         type: Number,

@@ -14,7 +14,7 @@ export class DBConnect {
         if (this.#instance) return this.#instance
         else {
             this.#instance = new DBConnect()
-            logger.info('Conectado con exito a la base de datos')
+            logger.http('Conectado con exito a la base de datos')
             return this.#instance
         }
     }

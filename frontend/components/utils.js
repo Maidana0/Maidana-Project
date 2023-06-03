@@ -36,3 +36,4 @@ export const ars = new Intl.NumberFormat('es-AR', {
   currency: 'ARS',
   minimumFractionDigits: 0
 });
+

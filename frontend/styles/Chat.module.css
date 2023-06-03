@@ -1,0 +1,119 @@
+.chat_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 80vh;
+    margin: 2rem auto;
+    padding: .1rem;
+    border-radius: 8px;
+    background-color: #e878a2;
+    gap: 2px;
+}
+
+.messages_container {
+    width: 100%;
+    height: 91%;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+/* SCROLLBAR */
+.messages_container::-webkit-scrollbar-thumb {background-color: #e878a2;border-radius: 8px;}
+
+/* SCROLLBAR */
+
+.submit_container {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 8px;
+
+}
+
+.submit_text {
+    width: 94.5%;
+    height: 100%;
+    border-radius: 8px;
+    padding: .5rem;
+}
+.submit_button{
+    width: 5%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.message_container {
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.user_msg_container {
+    display: flex;
+    flex-direction: column;
+    min-width: auto;
+    max-width: 90%;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    padding: .5rem;
+    margin: 4px;
+
+}
+
+.user_name {
+    color: #eb85ab;
+}
+
+.user_message {
+    /* font */
+    padding: .5rem;
+}
+
+
+.date {
+    width: 100%;
+    text-align: end;
+}
+
+.message_date {
+    font-size: small;
+    width: min-content;
+    cursor: pointer;
+    color: #ffffffbd;
+}
+
+.local_messages {
+    justify-content: flex-end;
+
+}
+
+.local_messages .user_msg_container {
+    background-color: #e4568af1;
+    color: white;
+    align-items: flex-end;
+}
+
+
+@media (max-width: 785px) {
+    .submit_text {
+        width: 89%;
+    }
+    .submit_button{
+        width: 10%;
+    }
+}
