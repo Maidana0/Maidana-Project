@@ -12,20 +12,12 @@ class ProductsService {
     }
 
     getAll = async (Plimit, Ppage, Pquery, Psort) => {
-        function ordenar(orde) {
-            if (orde == 'asc') return 1
-            if (orde == 'desc') return -1
-            else { return false }
-        }
-        const price = ordenar(Psort)
-
         const limit = Plimit ? Number(Plimit) : 10
         const page = Ppage ? Number(Ppage) : 1
         const query = Pquery ? { category: Pquery } : { status: true }
-        const sort = Psort ? { price } : { _id: 1 }
+        const sort = Psort ?  {price: Number(Psort)}  : { _id: 1 }
 
         const obj = { limit, page, sort, query }
-
         const list = await this.dao.getProducts(obj)
         return list
     }

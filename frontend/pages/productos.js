@@ -1,29 +1,31 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
-import Auth from "@FMaidana07/components/auth";
-import Link from "next/link";
-import AddToCart from "@FMaidana07/components/buttons/addToCart";
 import { Loading, Error } from "@FMaidana07/components/utils";
+import ButtonsPages from "@FMaidana07/components/buttons/buttonsPages";
+import Products from "@FMaidana07/components/products/products";
 
-import { LogContext } from "@FMaidana07/components/context";
+
+const category = ["zoro", "sanji", "usopp"]
+const options = {
+  page: (p) => (`page=${p}`),
+  category: (op) => (`&query=${category[op]}`),
+  limit: (l) => (`&limit=${l}`),
+  sort: (s) => (`&sort=${s}`)
+}
 
 const products = () => {
-
-  const { account } = useContext(LogContext)
-
   const [dataProducts, setProducts] = useState(false)
   const [isLoading, setLoading] = useState(false)
 
-  const [filter, setFilter] = useState({
-    category: false,
-    page: 1,
-    limit: false,
-    sort: false
-  })
+  const [page, setPage] = useState(1)
+  const [query, setQuery] = useState(false)
+  const [limit, setLimit] = useState(false)
+  const [sort, setSort] = useState(false)
+  let fetchOptions = `${options.page(page)}${query ? options.category(query) : ''}${limit ? options.limit(limit) : ''}${sort ? options.sort(sort) : ''}`
 
   useEffect(() => {
     setLoading(true)
-    fetch(`http://localhost:8080/api/products?page=${filter.page}`)
+    fetch(`http://localhost:8080/api/products?${fetchOptions}`)
       .then(res => res.json())
       .then(data => {
         setLoading(false)
@@ -34,20 +36,9 @@ const products = () => {
         setLoading(false)
         setProducts({ error: true })
       })
-  }, [filter])
+  }, [fetchOptions])
 
 
-
-  const handleNext = e => {
-    e.preventDefault()
-    setFilter({ ...filter, page: filter.page + 1 })
-  }
-  const handlePrev = e => {
-    e.preventDefault()
-    setFilter({ ...filter, page: filter.page - 1 })
-  }
-
-  // if (!dataProducts || isLoading) return <Loading />
   if (dataProducts.error) return <Error />
 
   return (
@@ -58,40 +49,21 @@ const products = () => {
       </Head>
 
       <h1>{dataProducts.message}</h1>
-      <> {
-        (!dataProducts || isLoading) ? <Loading /> :
-          dataProducts.products.payload.map((product) => (
-            <div key={product.id}>
-              <h4>{product.title}</h4>
-              <p>Categoria: {product.category}</p>
-              <hr />
-              <p>Precio: {product.price}</p>
-              <p>Stock: {product.stock}</p>
+      <>
 
-              <div>
-                <Link href={`/producto/${product.id}`}>
-                  Mostrar Detalles
-                </Link>
+        {
+          (!dataProducts || isLoading) ? <Loading /> : <Products
+            dataProducts={dataProducts.products}
+            options={{ setLimit, setSort, setQuery, limit: limit }}
+          />
+        }
 
-                <AddToCart
-                  pid={product.id}
-                  cid={account.cart}
-                />
-              </div>
-              <br />
-            </div>
-          ))
-      }
+        <ButtonsPages
+          dataProducts={dataProducts.products}
+          page={page}
+          setPage={setPage}
+        />
 
-        {dataProducts.products &&
-          <div>
-            {dataProducts.products.hasPrevPage ?
-              <button onClick={handlePrev}>Anterior</button> : ''
-            }
-            {dataProducts.products.hasNextPage &&
-              <button onClick={handleNext}> Siguiente</button>
-            }
-          </div>}
       </>
     </>
   )
@@ -99,34 +71,3 @@ const products = () => {
 }
 
 export default products
-
-{/* <button onClick={e => {
-              e.preventDefault()
-              setModal(!modal)
-            }}>
-              Filtrar</button>
-            {
-              modal ? <div>
-                <form onSubmit={e => {
-                  e.preventDefault()
-                }}>
-                  Ordenar por precio:
-                  <select name="sort">
-                    <option value={1}>De menor a mayor</option>
-                    <option value={-1}>De mayor a menor</option>
-                  </select>
-
-                  Categoria:
-                  <select name="category">
-                    <option value={"zoro"}>Zoro</option>
-                    <option value={"sanji"}>Sanji</option>
-                    <option value={"usopp"}>Usopp</option>
-                  </select>
-
-                  Cantidad de Productos:
-                  <input name="limit" type="number" />
-                  <input type="submit" value="Filtrar" />
-                </form>
-
-              </div> : ''
-            } */}
