@@ -13,9 +13,10 @@ const SendMessage = ({ styles, account, socket }) => {
             email: account.email,
             message: message
         }
-        socket.emit('client:newMessage', objMessage)
-
-        setMessage('')
+        if (objMessage.message != ' ' || objMessage.length > 0) {
+            socket.emit('client:newMessage', objMessage)
+            setMessage('')
+        }
 
     }
 
@@ -26,7 +27,7 @@ const SendMessage = ({ styles, account, socket }) => {
                     <form className={styles.submit_container} onSubmit={handleSubmit}>
                         <input className={styles.submit_text} type="text" value={message}
                             placeholder="Ingrese su mensaje..." onChange={changeMessage}
-                            minLength={1} required />
+                        />
                         <button className={styles.submit_button} type="submit">
                             <IoSend title='Enviar'
                                 alt={'ButtonSend'}
@@ -34,7 +35,7 @@ const SendMessage = ({ styles, account, socket }) => {
                                 color="#eb85ab" />
                         </button>
                     </form>
-                    : <div style={{fontSize:'1.1rem', fontWeight:600, backgroundColor:"black"}} className={styles.submit_container}> Debes iniciar sesion!</div>
+                    : <div style={{ fontSize: '1.1rem', fontWeight: 600, backgroundColor: "black" }} className={styles.submit_container}> Debes iniciar sesion!</div>
             }
         </>
     )

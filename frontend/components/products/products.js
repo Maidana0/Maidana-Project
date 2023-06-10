@@ -1,6 +1,7 @@
 import { FormFilter, ListProducts } from "./components"
 import { useContext } from "react";
 import { LogContext } from "@FMaidana07/components/context";
+import styles from "@FMaidana07/styles/Products.module.css"
 
 
 
@@ -15,10 +16,15 @@ const Products = ({ dataProducts, options }) => {
                 setSort={setSort}
                 setQuery={setQuery}
                 limit={limit}
+                styles={styles}
             />
-            <ListProducts
-                dataProducts={dataProducts}
-                cartId={account.cart} />
+            <div className={styles.products_container}>
+                <ListProducts
+                    dataProducts={dataProducts}
+                    cartId={account.cart}
+                    styles={styles}
+                />
+            </div>
         </>
     )
 }
