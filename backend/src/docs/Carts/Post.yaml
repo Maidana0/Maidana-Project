@@ -1,0 +1,85 @@
+paths: 
+  /api/carts:
+    post:
+      summary: Create a cart
+      tags: 
+          - Carts
+      responses:
+        '200': 
+          description: Cart created
+          content:
+            application/json:
+              example:
+                message: Carrito creado con exito!
+                newCart:
+                  _id: 64465z158afc577b9786881e
+                  products: []
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error
+
+  /api/carts/:cid/product/:pid}:
+    post:
+      summary: Add Product to Cart
+      description: Only we need a valid cart id and the product id
+      tags: 
+          - Carts
+      parameters:
+      - name: cid
+        required: true
+        in: path
+        description: Cart identifier
+      - name: pid
+        required: true
+        in: path
+        description: Product identifier
+
+      responses:
+        '200':
+          description: Product added to cart
+          content:
+            application/json:
+              example:
+                message: Producto agregado!
+                cart:
+                  _id: 64465z158afc577b9786881e
+                  products:
+                    product: 24m38fe776e61je07ee88930
+                    quantity: 15
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error
+
+
+  /api/carts/:id/purchase:
+    post:
+      description: This return a ticket order of this cart
+      summary: Purchase cart
+      tags: 
+          - Carts
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Cart identifier
+
+      responses:
+        '200':
+          description: Cart purchased
+          content:
+            application/json:
+              example:
+                code: order-701-57720-2     
+                purchase_datetime: Fecha= 25/4/2023 - Hora= 20:26
+                amount: 5000
+                purchaser: usuario@user.com
+                products:
+                  product: 24m38fe776e61je07ee88930
+                  quantity: 5
+
+        '400':
+          description: Some data is missing
+        '500': 
+          description: Server error

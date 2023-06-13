@@ -32,7 +32,34 @@
 .btn_addProduct:hover {
     background-color: #bb39f7;
 }
+
 /* #b47dcd, #e878a2, #eb85ab */
 .btn_details:hover {
     background-color: rgb(253, 51, 125);
 }
+
+
+
+.btnPages_container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: .5rem auto 3rem;
+    text-align: center;
+}
+
+.btnPages_container>button {
+    transition: all .5s;
+    padding: .8rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: solid .5px;
+    cursor: pointer;
+    background: none;
+}
+
+.btnPages_prev {color: #9738c4}
+.btnPages_next {color: #eb85ab}

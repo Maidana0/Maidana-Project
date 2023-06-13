@@ -1,0 +1,55 @@
+paths: 
+  /api/carts:
+    get:
+      summary: Get All Carts
+      tags: 
+          - Carts
+      responses:
+        '200': 
+          description: Get all Products in this format (example)
+          content:
+            application/json:
+              example:
+                message: Todos los carritos!
+                carts:
+                  type: Array 
+                  content:
+                    _id: 64465z158afc577b9786881e
+                    products:
+                      product: 24m38fe776e61je07ee88930
+                      quantity: 15
+                  
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error
+
+
+  /api/carts/{cid}:
+    get:
+      summary: Get cart by id
+      tags: 
+          - Carts
+      parameters:
+      - name: cid
+        required: true
+        in: path
+        description: Cart identifier
+
+      responses:
+        '200': 
+          description: Get one cart in this format (example)
+          content:
+            application/json:
+              example:
+                message: Carrito con el id 64465z158afc577b9786881e
+                cart:
+                  _id: 64465z158afc577b9786881e
+                  products:
+                    product: 24m38fe776e61je07ee88930
+                    quantity: 15
+                  
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error

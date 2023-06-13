@@ -40,7 +40,7 @@ const textError = numero => `Ocurrio un Error. El producto con el id:"${numero}"
         try {
             const getProduct = await productsModel.paginate({ _id: getId }, { lean: true })
             if (getProduct.docs) {
-                return getProduct.docs
+                return getProduct.docs[0]
             }
             return { "error": textError(getId) }
 

@@ -14,7 +14,7 @@ class ProductsController {
             res.json({
                 message: "Lista de productos",
                 products
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.GET_PRODUCTS_ERROR, 
@@ -28,7 +28,7 @@ class ProductsController {
         try {
             const { pid } = req.params
             const product = await productsService.getOne(pid)
-            res.json(product)
+            res.json(product).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.GET_PRODUCT_ID_ERROR, 
@@ -45,7 +45,7 @@ class ProductsController {
             res.json({
                 message: "Producto agregado!",
                 addedProduct
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.ADD_PRODUCT_ERROR, 
@@ -63,7 +63,7 @@ class ProductsController {
             res.json({
                 message: "Producto actualizado!",
                 updateProduct
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.UPDATE_PRODUCT_ERROR, 
@@ -80,7 +80,7 @@ class ProductsController {
             res.json({
                 message: "Producto eliminado!",
                 productDeleted
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.DELETE_PRODUCT_ERROR, 

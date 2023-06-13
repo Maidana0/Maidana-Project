@@ -1,0 +1,46 @@
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Auto Generated
+          example: 24m38fe776e61je07ee88930
+        title:
+          type: String
+          example: Example Product
+        description:
+          type: String
+          example: This product is an example
+        code:
+          type: String
+          example: zp1
+          unique: true
+        price:
+          type: Number
+          example: 999
+        status:
+          type: Boolean
+          example: true
+        stock:
+          type: Number
+          example: 55
+        category:
+          type: String
+          example: Example
+        thumbnails:
+          type: Array
+          example: [example.jpg]
+
+      example:
+        _id: 24m38fe776e61je07ee88930
+        title: Example Product
+        description: This product is an example
+        code: zp1
+        price: 999
+        status: true
+        stock: 55
+        category: Example
+        thumbnails:
+          front_default: "example.jpg"   

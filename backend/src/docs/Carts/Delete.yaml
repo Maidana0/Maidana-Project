@@ -1,0 +1,63 @@
+paths:
+  /:cid/product/:pid:
+    delete:
+      description: We need cart id and the product id to removed
+      summary: Delete a product in the cart
+      tags:
+          - Carts
+      parameters:
+      - name: cid
+        description: Cart identifier
+        required: true
+        in: path
+      - name: pid
+        description: Product identifier
+        required: true
+        in: path
+
+      responses:
+        '200': 
+          description: Product removed
+          content:
+            application/json:
+              example:
+                message: Producto eliminado del carrito!
+                cart:
+                    _id: 64465z158afc577b9786881e
+                    products:
+                      product: 64061z158afc577b9786881e
+                      quantity: 1
+                  
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error      
+
+  /:id:
+   delete:
+      summary: Delete all products in cart
+      tags:
+          - Carts
+      parameters:
+      - name: id
+        description: Cart identifier
+        required: true
+        in: path
+
+      responses:
+        '200': 
+          description: Products removed
+          content:
+            application/json:
+              example:
+                message: Productos eliminados del carrito!
+                cart:
+                    _id: 64465z158afc577b9786881e
+                    products: []
+                  
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error      
+
+

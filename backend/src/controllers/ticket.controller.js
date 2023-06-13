@@ -8,7 +8,7 @@ class TicketController {
         try {
             const { order } = req.body
             const ticket = await ticketsService.findTicketByOrder(order)
-            req.json(ticket)
+            req.json(ticket).status(200)
 
         } catch (error) {
             res.json({
@@ -24,7 +24,7 @@ class TicketController {
             const { email } = req.body
 
             const ticket = await ticketsService.generateTicket(cid, email)
-            res.json(ticket)
+            res.json(ticket).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.PURCHASE_CART_ERROR, 

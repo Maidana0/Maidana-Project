@@ -24,7 +24,6 @@ import './routes/middlewares/passport.js'
 import generateLog from "./routes/middlewares/winston.middleware.js";
 import logger from "./utils/winston/winston.js";
 
-
 if (cluster.isPrimary) {
     for (let i = 0; i < cpus().length; i++) {
         cluster.fork()
@@ -45,7 +44,7 @@ if (cluster.isPrimary) {
         saveUninitialized: false
     }))
 
-    app.use(express.static(__dirname + '/../../public'))
+    app.use(express.static(__dirname + '/../public'))
     app.use(express.json())
     app.use(express.urlencoded({ extended: true }))
 

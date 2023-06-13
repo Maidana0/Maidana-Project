@@ -1,0 +1,145 @@
+paths: 
+  /api/products:
+    post:
+      summary: Post Product/s
+      description: Creates new products
+      tags: 
+          - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Products'
+
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              example:
+                message: Producto agregado!
+                addedProduct:
+                  _id: 24m38fe776e61je07ee88930
+                  title: Example Product
+                  description: This product is an example
+                  code: zp1
+                  price: 999
+                  status: true
+                  stock: 55
+                  category: Example
+                  thumbnails:
+                    front_default: "example.jpg"        
+        '400': 
+          description: Some data is missing
+        '401':
+          description: User unauthorized 
+          content: 
+            application/json:
+              example:
+                message: No estas autorizado!
+                error: Solo para Administradores!
+        '500': 
+          description: Server error
+
+
+  /api/products/{pid}:
+    put:
+      description: Get one Product and change its properties by request body
+      summary: Update a Product
+      tags: 
+          - Products
+      parameters:
+      - name: pid
+        required: true
+        in: path
+        description: Product identifier
+      requestBody:
+        required: true
+        description: Include only the properties to modify
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Products'
+
+      responses:
+        '200':
+          description: Updated product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+              example:
+                message: Producto actualizado!
+                updateProduct:
+                  _id: 24m38fe776e61je07ee88930
+                  title: Example Product Updated
+                  description: this product has been updated
+                  code: zp1
+                  price: 999
+                  status: true
+                  stock: 55
+                  category: Example
+                  thumbnails:
+                    front_default: "example.jpg"          
+
+        '400': 
+          description: Some data is missing
+        '401':
+          description: User unauthorized 
+          content: 
+            application/json:
+              example:
+                message: No estas autorizado!
+                error: Solo para Administradores!
+        '500': 
+          description: Server error
+
+
+  /api/products/{id}:
+    delete:
+      description: Get one product by ID and delete this
+      summary: Delete a Product
+      tags: 
+          - Products
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Product identifier
+
+      responses:
+        '200':
+          description: Updated product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+              example:
+                message: Producto eliminado!
+                productDeleted:
+                  _id: 24m38fe776e61je07ee88930
+                  title: Example Deleted Product
+                  description: this product has been deleted
+                  code: zp1
+                  price: 999
+                  status: true
+                  stock: 55
+                  category: Example
+                  thumbnails:
+                    front_default: "example.jpg"          
+
+        '400': 
+          description: Some data is missing
+        '401':
+          description: User unauthorized 
+          content: 
+            application/json:
+              example:
+                message: No estas autorizado!
+                error: Solo para Administradores!
+        '500': 
+          description: Server error
+  
+
+

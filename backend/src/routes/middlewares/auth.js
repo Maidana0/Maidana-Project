@@ -30,7 +30,7 @@ export function onlyAdmin(req, res, next) {
         res.json({
             message: "No estas autorizado!",
             error: "Solo para Administradores!"
-        })
+        }).status(401)
     }
 }
 

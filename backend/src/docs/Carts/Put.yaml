@@ -1,0 +1,85 @@
+paths:
+  /api/carts/{cid}/product/{pid}:
+    put:
+      summary: Update quantity of a product in the cart
+      tags: 
+        - Carts
+      description: Get one cart and update the quantity of a product. We need the {cart id}, {product id} and the property quantity:1 from the body request          
+      parameters:
+      - name: cid
+        required: true
+        in: path
+        description: Cart identifier
+      - name: pid
+        required: true
+        in: path
+        description: Product identifier
+        
+      requestBody:
+        required: true
+        description: Quantity of product
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Quantity'
+
+      responses:
+        '200':
+          description: Updated product quantity in his cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+              example:
+                message: Producto actualizado con exito!
+                cart:
+                  _id: 64465z158afc577b9786881e
+                  products:
+                    product: 24m38fe776e61je07ee88930
+                    quantity: 15
+
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error
+
+
+  /api/carts/{id}:
+    put:
+      summary: Update a cart
+      tags: 
+        - Carts
+      description: Get one cart and update this properties. 
+      parameters:
+      - name: id
+        required: true
+        in: path
+        description: Cart identifier
+        
+      requestBody:
+        required: true
+        description: Modify this cart
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Carts'
+
+      responses:
+        '200':
+          description: Updated cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+              example:
+                message: Carrito actualizado con exito!
+                cart:
+                  _id: 64465z158afc577b9786881e
+                  products:
+                    product: 24m38fe776e61je07ee88930
+                    quantity: 85
+
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error

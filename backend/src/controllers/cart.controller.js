@@ -12,7 +12,7 @@ class CartController {
             res.json({
                 message: "Todos los carritos",
                 carts
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.GET_CARTS_ERROR,
@@ -29,7 +29,7 @@ class CartController {
             res.json({
                 message: `Carrito con el id ${idCart}`,
                 cart
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.GET_CART_ID_ERROR,
@@ -44,7 +44,7 @@ class CartController {
             res.json({
                 message: 'Carrito creado con exito!',
                 newCart
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.ADD_CART_ERROR,
@@ -61,7 +61,7 @@ class CartController {
             res.json({
                 message: 'Producto agregado!',
                 cart
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.ADD_PROD_TO_CART_ERROR,
@@ -78,7 +78,7 @@ class CartController {
             res.json({
                 message: 'Producto actualizado con exito!',
                 cart
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.UPDATE_PRODS_QUANTITY_ERROR, 
@@ -95,7 +95,7 @@ class CartController {
             res.json({
                 message: 'Carrito actualizado!',
                 cart
-            })
+            }).status(200)
         } catch (error) {
             res.json({
                 message: "Error",
@@ -110,7 +110,7 @@ class CartController {
             res.json({
                 message: 'Producto eliminado del carrito!',
                 cart
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.DEL_PROD_FROM_CART_ERROR, 
@@ -126,7 +126,7 @@ class CartController {
             res.json({
                 message: 'Carrito vaciado con exito',
                 cart
-            })
+            }).status(200)
         } catch (error) {
             CustomError.createCustomError({
                 name: ErrorsName.EMPTY_CART_ERROR, 

@@ -1,0 +1,119 @@
+paths: 
+  /api/products:
+    get:
+      summary: Get All Products
+      description: Get All Products in payload
+      tags: 
+          - Products
+      responses:
+        '200': 
+          description: Get all Products in this format (example)
+          content:
+            application/json:
+              example:
+                message: Lista de productos
+                products: 
+                  status: sucess
+                  payload: [ All Products here... ]
+                totalPages: 4
+                page: 1
+                hasPrevPage: false
+                hasNextPage: true
+                prevLink: null
+                nextLink: http://localhost:8080/api/products?page=2
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error
+
+  /api/products?page={page}&limit={limit}&sort={sort}&query={query}:
+    get:
+      summary: Filter All Products
+      description: Get products filtered
+      tags: 
+          - Products
+
+      parameters:
+      - name: page
+        required: false
+        in: query
+        type: Number
+        description: Page number
+
+      - name: limit
+        required: false
+        in: query
+        type: Number
+        description: Products limit on this page
+
+      - name: sort
+        required: false
+        in: query
+        type: Number
+        description: Sort by price, receive 1 (⬇) or -1 (⬆) 
+
+      - name: query
+        required: false
+        in: query
+        type: String
+        description: Filter by product category - (zoro, sanji, usopp)
+
+      responses:
+        '200':
+          description: Get All Products filtered in this format
+          content:
+            application/json:
+              example:
+                message: Lista de productos
+                products: 
+                  status: sucess
+                  payload: [ All Products here... ]
+                totalPages: 4
+                page: 1
+                hasPrevPage: false
+                hasNextPage: true
+                prevLink: null
+                nextLink: http://localhost:8080/api/products?page=2
+        '400': 
+          description: Some data is missing.
+        '500': 
+          description: Server error
+
+  /api/products/{pid}:
+    get:
+      description: Returns a single product in an array
+      summary: Get One Product
+      tags: 
+          - Products
+      parameters:
+      - name: pid
+        required: true
+        in: path
+        description: Product identifier
+
+      responses:
+        '200':
+          description: Get One Product by ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+              example:
+                _id: 24m38fe776e61je07ee88930
+                title: Example Product
+                description: This product is an example
+                code: zp1
+                price: 999
+                status: true
+                stock: 55
+                category: Example
+                thumbnails:
+                  front_default: "example.jpg"          
+
+        '400':
+          description: Some data is missing
+        '500': 
+          description: Server error
+
+
+

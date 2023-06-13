@@ -44,12 +44,12 @@ const category = () => {
         <div>
           {
             <div>
-              <h3>{product[0].title}</h3>
-              <h4>Categoria: {product[0].category}</h4>
-              <img src={product[0].thumbnails[0].front_default.slice(5)} />
-              <p>Descripcion: {product[0].description}</p>
-              <p>Precio: {product[0].price}</p>
-              <p>Stock: {product[0].stock}</p>
+              <h3>{product.title}</h3>
+              <h4>Categoria: {product.category}</h4>
+              <img src={product.thumbnails.front_default.slice(5)} />
+              <p>Descripcion: {product.description}</p>
+              <p>Precio: {product.price}</p>
+              <p>Stock: {product.stock}</p>
               <AddToCart
                 ShowDetails={false}
                 cid={account.cart}

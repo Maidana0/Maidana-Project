@@ -5,12 +5,21 @@ import CartsRouter from './cart.router.js'
 import loggerTestRouter from "../utils/winston/logger.test.js";
 import MockRouter from "../utils/mocks.js";
 
+import swagger from '../docs/swagger.js';
+
 const accountRouter = new AccountRouter()
 const productsRouter = new ProductsRouter()
 const cartsRouter = new CartsRouter()
 
 
+
+
+
+
 const useRoutes = (app)=>{
+    // API DOCS
+    app.use('/api/docs', swagger.ui, swagger.setup)
+    // API
     app.use('/account', accountRouter.getRouter())
     app.use('/api/products', productsRouter.getRouter())
     app.use('/api/carts', cartsRouter.getRouter())

@@ -22,7 +22,6 @@ const products = () => {
   const [limit, setLimit] = useState(false)
   const [sort, setSort] = useState(false)
   let fetchOptions = `${options.page(page)}${query ? options.category(query) : ''}${limit ? options.limit(limit) : ''}${sort ? options.sort(sort) : ''}`
-
   useEffect(() => {
     setLoading(true)
     fetch(`http://localhost:8080/api/products?${fetchOptions}`)
@@ -54,7 +53,7 @@ const products = () => {
         {
           (!dataProducts || isLoading) ? <Loading /> : <Products
             dataProducts={dataProducts.products}
-            options={{ setLimit, setSort, setQuery, limit: limit }}
+            options={{ setPage, setLimit, setSort, setQuery, limit: limit }}
           />
         }
 

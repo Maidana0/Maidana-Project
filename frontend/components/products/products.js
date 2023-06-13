@@ -7,11 +7,12 @@ import styles from "@FMaidana07/styles/Products.module.css"
 
 
 const Products = ({ dataProducts, options }) => {
-    const { setLimit, setSort, setQuery, limit } = options
+    const { setPage, setLimit, setSort, setQuery, limit } = options
     const { account } = useContext(LogContext)
     return (
         <>
             <FormFilter
+                setPage={setPage}
                 setLimit={setLimit}
                 setSort={setSort}
                 setQuery={setQuery}

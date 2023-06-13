@@ -24,22 +24,19 @@ header,
 footer {
     display: flex;
     align-items: center;
+    justify-content: center;
     background-color: black;
     text-align: center;
     width: 100%;
     margin-top: auto;
     margin-bottom: auto;
+    height: 5rem;
 }
 
 header {
-    margin-top: 0%;
-    min-height: 10vh;
     border-bottom: solid .5px whitesmoke;
     gap: 30px;
-    justify-content: space-around;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
-
 }
 .logo{
     max-width: 45px;
@@ -57,9 +54,7 @@ header {
 }
 footer {
     margin-bottom: 0%;
-    min-height: 8vh;
     border-top: solid .5px whitesmoke;
-    justify-content: center;
     padding: 18px;
 
 }
@@ -68,7 +63,7 @@ h2,
 h4 {
     color: white;
 }
-a{
+a{  margin-top: 2rem;
     color: white;
     text-decoration: none;
     padding: 10px 20px;
@@ -101,6 +96,8 @@ main,
     box-shadow: 0 0 12px 4px black;
 }
 .home{
+    display: flex;
+    flex-direction: column;
     margin: 6rem auto;
     padding: 2rem 40px;
     width: 80%;
@@ -115,16 +112,6 @@ h1{
     border-bottom: solid 2.8px yellow;
     border-radius: 8px;
     margin: auto;
-}
-
-.header{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    width: 30%;
-    gap: 20px;
-    padding: 8px 0; 
 }
 
 @media ( max-width: 600px ){

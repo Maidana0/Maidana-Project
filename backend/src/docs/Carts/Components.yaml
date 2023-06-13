@@ -1,0 +1,36 @@
+
+components:
+  schemas:
+    Quantity:
+      type: Number
+      default: 1
+      example:
+        quantity: 25
+        
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Auto Generated
+          example: 64465z158afc577b9786881e
+        products:
+          type: object
+          properties:
+            product:
+              description: Product ID
+              type: ObjectId
+              example: 24m38fe776e61je07ee88930
+              schema:
+                  $ref: '#/components/schemas/Products'
+
+            quantity:
+              type: Number
+              default: 1
+
+      example:
+        _id: 64465z158afc577b9786881e
+        products:
+          product: 24m38fe776e61je07ee88930
+          quantity: 1
+        
